@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  health_base_points: 1
+  attack_base_points: 1
+  experience: 1
+
+two:
+  name: MyString
+  health_base_points: 1
+  attack_base_points: 1
+  experience: 1
