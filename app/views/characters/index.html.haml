@@ -1,0 +1,27 @@
+%h1 Liste des personnages
+
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th= I18n.t("activerecord.attributes.character.name")
+      %th= I18n.t("activerecord.attributes.character.health_base_points")
+      %th= I18n.t("activerecord.attributes.character.attack_base_points")
+      %th= I18n.t("activerecord.attributes.character.experience")
+      %th
+      %th
+      %th
+
+  %tbody
+    - @characters.each do |character|
+      %tr
+        %td= character.name
+        %td= character.health_base_points
+        %td= character.attack_base_points
+        %td= character.experience
+        %td= link_to I18n.t("form.show"), character
+        %td= link_to I18n.t("form.edit"), edit_character_path(character)
+        %td= link_to I18n.t("form.destroy"), character, method: :delete, data: { confirm: I18n.t("form.confirm") }
+
+%br
+
+= link_to "#{I18n.t("form.new")} #{I18n.t("activerecord.models.character")}", new_character_path

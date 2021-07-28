@@ -1,4 +1,4 @@
-class Caracter < ApplicationRecord
+class Character < ApplicationRecord
   has_many :fight_participations
   has_many :fights, through: :fight_participations
 
