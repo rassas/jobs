@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b= I18n.t("activerecord.attributes.character.name")
+  = @character.name
+%p
+  %b= I18n.t("activerecord.attributes.character.health_base_points")
+  = @character.health_base_points
+%p
+  %b= I18n.t("activerecord.attributes.character.attack_base_points")
+  = @character.attack_base_points
+%p
+  %b= I18n.t("activerecord.attributes.character.experience")
+  = @character.experience
+= link_to I18n.t("form.edit"), edit_character_path(@character)

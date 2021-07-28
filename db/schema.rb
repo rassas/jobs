@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_205451) do
+ActiveRecord::Schema.define(version: 2021_07_28_100655) do
 
-  create_table "caracters", force: :cascade do |t|
+  create_table "characters", force: :cascade do |t|
     t.string "name"
     t.integer "health_base_points"
     t.integer "attack_base_points"
-    t.integer "experience"
+    t.integer "experience", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 2021_07_27_205451) do
 
   create_table "fight_participations", force: :cascade do |t|
     t.integer "fight_id", null: false
-    t.integer "caracter_id", null: false
+    t.integer "character_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["caracter_id"], name: "index_fight_participations_on_caracter_id"
+    t.index ["character_id"], name: "index_fight_participations_on_character_id"
     t.index ["fight_id"], name: "index_fight_participations_on_fight_id"
   end
 
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2021_07_27_205451) do
 
   add_foreign_key "fight_participation_equipments", "equipment"
   add_foreign_key "fight_participation_equipments", "fight_participations"
-  add_foreign_key "fight_participations", "caracters"
+  add_foreign_key "fight_participations", "characters"
   add_foreign_key "fight_participations", "fights"
-  add_foreign_key "fights", "caracters", column: "winner_id"
+  add_foreign_key "fights", "characters", column: "winner_id"
 end

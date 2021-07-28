@@ -29,5 +29,14 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+fr:
+  hello: "Bonjour"
+
+  form:
+    new: "Nouveau"
+    edit: "Modifier"
+    show: "Afficher"
+    destroy: "Supprimer"
+    confirm: "vous êtes sûr?"
+    error: "erreur"
+    save: "Enregistrer"

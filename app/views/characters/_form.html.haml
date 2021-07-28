@@ -1,0 +1,19 @@
+= form_for @character do |f|
+  - if @character.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@character.errors.count, I18n.t("form.error"))} interdit la sauvegarde de ce personnage :"
+      %ul
+        - @character.errors.full_messages.each do |message|
+          %li= message
+
+  .mb-3
+    = f.label :name, class: "form-label"
+    = f.text_field :name, class: "form-control"
+  .mb-3
+    = f.label :health_base_points, class: "form-label"
+    = f.number_field :health_base_points, class: "form-control"
+  .mb-3
+    = f.label :attack_base_points, class: "form-label"
+    = f.number_field :attack_base_points, class: "form-control"
+  .mb-3
+    = f.submit I18n.t("form.save"), class: "btn btn-primary"
