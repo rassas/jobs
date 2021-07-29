@@ -1,0 +1,19 @@
+%h1
+  Liste des
+  = I18n.t("activerecord.models.fight").pluralize
+
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th Player 1
+      %th Player 2
+      %th= I18n.t("activerecord.attributes.fight.winner_id")
+      %th
+
+  %tbody
+    - @fights.each do |fight|
+      %tr
+        %td= fight.character.first.name
+        %td= fight.character.last.name
+        %td
+        %td= link_to "Récapitulatif", fight_path(fight)

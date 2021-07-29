@@ -4,4 +4,6 @@ class FightParticipation < ApplicationRecord
 
   has_many :fight_participation_equipment
   has_many :equipment, through: :fight_participation_equipment
+
+  accepts_nested_attributes_for :fight_participation_equipment
 end

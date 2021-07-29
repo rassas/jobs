@@ -1,0 +1,24 @@
+= form_for @fight do |f|
+  - if @fight.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@fight.errors.count, I18n.t("form.error"))} prohibited this fight from being saved:"
+      %ul
+        - @fight.errors.full_messages.each do |message|
+          %li= message
+
+  .row.mb-3
+    = f.fields_for :fight_participations do |fight_participations_form|
+      .col.align-self-center
+        .card
+          .card-header
+            Player
+            = fight_participations_form.index + 1
+          .card-body
+            .mb-3
+              = fight_participations_form.label :character_id, class: "form-label"
+              = fight_participations_form.select :character_id, Character.all.map{|c| [c.name, c.id]}, {:include_blank => "Select Player"}, class: "form-control"
+      - if fight_participations_form.index <1
+        .col-md-1.align-self-center.text-center
+          VS
+  .mb-3.text-center
+    = f.submit 'Ready? fight!', class: "btn btn-primary"
