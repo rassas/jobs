@@ -1,0 +1,17 @@
+%p
+  %b= I18n.t("activerecord.attributes.equipment.name")
+  = @equipment.name
+%p
+  %b= I18n.t("activerecord.attributes.equipment.attack_points")
+  = @equipment.attack_points
+%p
+  %b= I18n.t("activerecord.attributes.equipment.defense_points")
+  = @equipment.defense_points
+%p
+  %b= I18n.t("activerecord.attributes.equipment.required_experience")
+  = @equipment.required_experience
+%p
+  %b= I18n.t("activerecord.attributes.equipment.type")
+  = I18n.t("activerecord.models.#{@equipment.type.downcase}").capitalize
+
+= link_to I18n.t("form.edit"), edit_equipment_path(@equipment)

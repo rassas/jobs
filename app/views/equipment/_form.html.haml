@@ -1,0 +1,25 @@
+= form_for @equipment do |f|
+  - if @equipment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@equipment.errors.count, I18n.t("form.error"))} prohibited this equipment from being saved:"
+      %ul
+        - @equipment.errors.full_messages.each do |message|
+          %li= message
+
+  .mb-3
+    = f.label :name, class: "form-label"
+    = f.text_field :name, class: "form-control"
+  .mb-3
+    = f.label :attack_points, class: "form-label"
+    = f.number_field :attack_points, class: "form-control"
+  .mb-3
+    = f.label :defense_points, class: "form-label"
+    = f.number_field :defense_points, class: "form-control"
+  .mb-3
+    = f.label :required_experience, class: "form-label"
+    = f.number_field :required_experience, class: "form-control"
+  .mb-3{class: "#{params[:type].present? ? 'visually-hidden' : ''}"}
+    = f.label :type, class: "form-label"
+    = f.select :type, options_for_select([[I18n.t("activerecord.models.#{Weapon.name.downcase}").capitalize, Weapon.name], [I18n.t("activerecord.models.#{Shield.name.downcase}").capitalize, Shield.name]], @equipment.type), {}, class: "form-control"
+  .mb-3
+    = f.submit I18n.t("form.save"), class: "btn btn-primary"

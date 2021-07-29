@@ -24,11 +24,12 @@
               %a.nav-link{:href => "#"} Historique
             %li.nav-item.dropdown
               %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
-                Equipements
+                = I18n.t("activerecord.models.equipment").capitalize.pluralize
               %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
                 %li
-                  %a.dropdown-item{:href => "#"} Armes
+                  = link_to I18n.t("activerecord.models.weapon").capitalize.pluralize, equipment_index_path(type: "Weapon"), class: "dropdown-item"
                 %li
-                  %a.dropdown-item{:href => "#"} boucliers
+                  = link_to I18n.t("activerecord.models.shield").capitalize.pluralize, equipment_index_path(type: "Shield"), class: "dropdown-item"
+    %p#notice.text-center= notice
     .container.mt-5
       = yield

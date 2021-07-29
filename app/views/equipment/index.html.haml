@@ -1,0 +1,33 @@
+%h1
+  Liste des
+  = I18n.t("activerecord.models.#{params[:type].present? ? params[:type].downcase : 'equipment'}").pluralize
+
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th= I18n.t("activerecord.attributes.equipment.name")
+      %th= I18n.t("activerecord.attributes.equipment.attack_points")
+      %th= I18n.t("activerecord.attributes.equipment.defense_points")
+      %th= I18n.t("activerecord.attributes.equipment.required_experience")
+      - unless params[:type].present?
+        %th= I18n.t("activerecord.attributes.equipment.type")
+      %th
+      %th
+      %th
+
+  %tbody
+    - @equipment.each do |equipment|
+      %tr
+        %td= equipment.name
+        %td= equipment.attack_points
+        %td= equipment.defense_points
+        %td= equipment.required_experience
+        - unless params[:type].present?
+          %td= I18n.t("activerecord.models.#{equipment.type.downcase}").capitalize
+        %td= link_to I18n.t("form.show"), equipment_path(equipment, type: params[:type])
+        %td= link_to I18n.t("form.edit"), edit_equipment_path(equipment, type: params[:type])
+        %td= link_to I18n.t("form.destroy"), equipment, method: :delete, data: { confirm: I18n.t("form.confirm") }
+
+%br
+
+= link_to "#{I18n.t("form.new")} #{I18n.t("activerecord.models.#{params[:type].present? ? params[:type].downcase : 'equipment'}")}", new_equipment_path(type: params[:type])

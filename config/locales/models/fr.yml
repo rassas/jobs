@@ -2,16 +2,33 @@ fr:
   activerecord:
     models:
       character: personnage
+      equipment: équipement
+      shield: bouclier
+      weapon: arme
     attributes:
       character:
         name: Nom
         health_base_points: Points de vie
         attack_base_points: Points d'attaque
         experience: Points d'expérience
+      equipment:
+        name: Nom
+        attack_points: Points d'attaque
+        defense_points: Points de défense
+        required_experience: Expérience requise
+        type: Type
     errors:
       models:
-        user:
+        character:
           attributes:
             name:
-
-              
+            health_base_points:
+            attack_base_points:
+            experience:
+        equipment:
+          attributes:
+            name:
+            attack_points:
+            defense_points:
+            required_experience:
+            type:

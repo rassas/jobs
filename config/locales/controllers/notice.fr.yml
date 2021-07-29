@@ -1,0 +1,6 @@
+fr:
+  controllers:
+    notice:
+      successfully_created: a été créé avec succès.
+      successfully_updated: a été mis à jour avec succès.
+      successfully_destroyed: a été supprimé avec succès.
