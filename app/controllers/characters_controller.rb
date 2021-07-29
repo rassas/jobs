@@ -1,12 +1,12 @@
 class CharactersController < ApplicationController
   before_action :set_character, only: %i[ show edit update destroy ]
 
-  # GET /characters or /characters.json
+  # GET /characters
   def index
     @characters = Character.all
   end
 
-  # GET /characters/1 or /characters/1.json
+  # GET /characters/1
   def show
   end
 
@@ -19,36 +19,35 @@ class CharactersController < ApplicationController
   def edit
   end
 
-  # POST /characters or /characters.json
+  # POST /characters
   def create
     @character = Character.new(character_params)
 
     respond_to do |format|
       if @character.save
-        format.html { redirect_to @character, notice: "Le personnage a été créé avec succès." }
+        format.html { redirect_to @character, notice: "#{I18n.t("activerecord.models.character").capitalize} #{I18n.t('controllers.notice.successfully_created')}" }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /characters/1 or /characters/1.json
+  # PATCH/PUT /characters/1
   def update
     respond_to do |format|
       if @character.update(character_params)
-        format.html { redirect_to @character, notice: "Le personnage a été mis à jour avec succès." }
+        format.html { redirect_to @character, notice: "#{I18n.t("activerecord.models.character").capitalize} #{I18n.t('controllers.notice.successfully_updated')}" }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /characters/1 or /characters/1.json
+  # DELETE /characters/1
   def destroy
     @character.destroy
     respond_to do |format|
-      format.html { redirect_to characters_url, notice: "Le personnage a été supprimé avec succès." }
-      format.json { head :no_content }
+      format.html { redirect_to characters_url, notice: "#{I18n.t("activerecord.models.character").capitalize} #{I18n.t('controllers.notice.successfully_destroyed')}" }
     end
   end
 

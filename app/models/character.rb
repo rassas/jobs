@@ -2,7 +2,7 @@ class Character < ApplicationRecord
   has_many :fight_participations
   has_many :fights, through: :fight_participations
 
-  def available_equipments
+  def available_equipment
     Equipment.where("required_experience >= ?", experience)
   end
 
