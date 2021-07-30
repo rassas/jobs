@@ -8,8 +8,8 @@ class Fight < ApplicationRecord
   after_create :confront!
 
   def confront!
-    hitter_participation = fight_participations.first
-    hitted_participation = fight_participations.last
+    hitter_participation = fight_participations.order(Arel.sql('RANDOM()')).first
+    hitted_participation = fight_participations.where.not(id: hitter_participation.id).first
     loop do
       hit = hitter_participation.hits.create()
       hitted_participation.health_points -= hit.damage
