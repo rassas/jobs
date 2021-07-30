@@ -15,35 +15,38 @@
             %span.badge.bg-danger
               = I18n.t("activerecord.attributes.character.attack_base_points")
               = fight_participation.character.attack_base_points
-        .card-body
-          %b= I18n.t("activerecord.models.weapon").capitalize.pluralize
-          %ul
-            - fight_participation.weapons.each do |weapon|
-              %li
-                = weapon.name
-                %br
-                %span.badge.bg-danger
-                  = I18n.t("activerecord.attributes.equipment.attack_points")
-                  = weapon.attack_points
-                - if weapon.defense_points.present? && weapon.defense_points > 0
-                  %br
-                  %span.badge.bg-success
-                    = I18n.t("activerecord.attributes.equipment.defense_points")
-                    = weapon.defense_points
-          %b= I18n.t("activerecord.models.shield").capitalize.pluralize
-          %ul
-            - fight_participation.shields.each do |shield|
-              %li
-                = shield.name
-                %br
-                %span.badge.bg-success
-                  = I18n.t("activerecord.attributes.equipment.defense_points")
-                  = shield.defense_points
-                - if shield.attack_points.present? && shield.attack_points > 0
-                  %br
-                  %span.badge.bg-danger
-                    = I18n.t("activerecord.attributes.equipment.attack_points")
-                    = shield.attack_points
+        - if fight_participation.weapons.any? || fight_participation.shields.any?
+          .card-body
+            - if fight_participation.weapons.any?
+              %b= I18n.t("activerecord.models.weapon").capitalize.pluralize
+              %ul
+                - fight_participation.weapons.each do |weapon|
+                  %li
+                    = weapon.name
+                    %br
+                    %span.badge.bg-danger
+                      = I18n.t("activerecord.attributes.equipment.attack_points")
+                      = weapon.attack_points
+                    - if weapon.defense_points.present? && weapon.defense_points > 0
+                      %br
+                      %span.badge.bg-success
+                        = I18n.t("activerecord.attributes.equipment.defense_points")
+                        = weapon.defense_points
+            - if fight_participation.shields.any?
+              %b= I18n.t("activerecord.models.shield").capitalize.pluralize
+              %ul
+                - fight_participation.shields.each do |shield|
+                  %li
+                    = shield.name
+                    %br
+                    %span.badge.bg-success
+                      = I18n.t("activerecord.attributes.equipment.defense_points")
+                      = shield.defense_points
+                    - if shield.attack_points.present? && shield.attack_points > 0
+                      %br
+                      %span.badge.bg-danger
+                        = I18n.t("activerecord.attributes.equipment.attack_points")
+                        = shield.attack_points
     - if index < 1
       .col-md-1.align-self-center.text-center
         VS
@@ -53,7 +56,8 @@
     - @fight.hits.order(:id).each do |hit|
       %li.list-group-item{class: "#{ hit.fight_participation == @fight.fight_participations.first ? '' : 'text-end'}"}
         = hit.fight_participation.character.name
-        %span.badge.bg-warning
-          = hit.fight_participation_weapon.equipment.name
+        - if hit.fight_participation_weapon.present?
+          %span.badge.bg-warning
+            = hit.fight_participation_weapon.equipment.name
         %span.badge.bg-danger
           = hit.damage
