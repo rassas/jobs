@@ -5,6 +5,8 @@ fr:
       equipment: équipement
       shield: bouclier
       weapon: arme
+      fight: Combat
+
     attributes:
       character:
         name: Nom
@@ -17,6 +19,11 @@ fr:
         defense_points: Points de défense
         required_experience: Expérience requise
         type: Type
+      fight:
+        winner_id: Gagnant
+      fight_participation:
+        character_id: Personnage
+        fight_id: Combat
     errors:
       models:
         character:

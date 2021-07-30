@@ -1,0 +1,55 @@
+.row.mb-3
+  - @fight.fight_participations.each_with_index do |fight_participation, index|
+    .col.align-items-start
+      .card
+        .card-header
+          %b= fight_participation.character.name
+          %div
+            %span.badge.bg-success
+              = I18n.t("activerecord.attributes.character.health_base_points")
+              = fight_participation.character.health_base_points
+            %span.badge.bg-danger
+              = I18n.t("activerecord.attributes.character.attack_base_points")
+              = fight_participation.character.attack_base_points
+        .card-body
+          %b Weapons
+          %ul
+            - fight_participation.weapons.each do |weapon|
+              %li
+                = weapon.name
+                %br
+                %span.badge.bg-danger
+                  = I18n.t("activerecord.attributes.equipment.attack_points")
+                  = weapon.attack_points
+                - if weapon.defense_points.present? && weapon.defense_points > 0
+                  %br
+                  %span.badge.bg-success
+                    = I18n.t("activerecord.attributes.equipment.defense_points")
+                    = weapon.defense_points
+          %b Shields
+          %ul
+            - fight_participation.shields.each do |shield|
+              %li
+                = shield.name
+                %br
+                %span.badge.bg-success
+                  = I18n.t("activerecord.attributes.equipment.defense_points")
+                  = shield.defense_points
+                - if shield.attack_points.present? && shield.attack_points > 0
+                  %br
+                  %span.badge.bg-danger
+                    = I18n.t("activerecord.attributes.equipment.attack_points")
+                    = shield.attack_points
+    - if index < 1
+      .col-md-1.align-self-center.text-center
+        VS
+%h3 Récapitulatif du combat:
+.card.mb-5
+  %ul.list-group.list-group-flush
+    - @fight.hits.order(:id).each do |hit|
+      %li.list-group-item{class: "#{ hit.fight_participation == @fight.fight_participations.first ? '' : 'text-end'}"}
+        = hit.fight_participation.character.name
+        %span.badge.bg-warning
+          = hit.fight_participation_weapon.equipment.name
+        %span.badge.bg-danger
+          = hit.damage

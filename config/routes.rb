@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :characters
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root 'pages#index'
+  resources :fights, only: [:new, :create, :index, :show]
+  root 'fights#new'
 end
