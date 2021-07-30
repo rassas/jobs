@@ -13,7 +13,7 @@
   %tbody
     - @fights.each do |fight|
       %tr
-        %td= fight.character.first.name
-        %td= fight.character.last.name
+        %td= fight.characters.first.name
+        %td= fight.characters.last.name
         %td
         %td= link_to "Récapitulatif", fight_path(fight)

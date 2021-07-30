@@ -32,14 +32,20 @@ class FightsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fight
-      @Fight = Fight.find(params[:id])
+      @fight = Fight.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def fight_params
       params.require(:fight).permit(
         fight_participations_attributes: [
-          :character_id
+          :character_id,
+          fight_participation_weapons_attributes: [
+            :equipment_id
+          ],
+          fight_participation_shields_attributes: [
+            :equipment_id
+          ]
         ]
       )
     end

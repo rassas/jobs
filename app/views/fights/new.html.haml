@@ -8,7 +8,7 @@
 
   .row.mb-3
     = f.fields_for :fight_participations do |fight_participations_form|
-      .col.align-self-center
+      .col.align-items-start
         .card
           .card-header
             Player
@@ -17,7 +17,20 @@
             .mb-3
               = fight_participations_form.label :character_id, class: "form-label"
               = fight_participations_form.select :character_id, Character.all.map{|c| [c.name, c.id]}, {:include_blank => "Select Player"}, class: "form-control"
-      - if fight_participations_form.index <1
+            .mb-3
+              %label.form-label Wepons
+              = fight_participations_form.fields_for :fight_participation_weapons do |fight_participation_weapon_form|
+                = render "fight_participation_weapon_fields", f: fight_participation_weapon_form
+              .links.text-center
+                = link_to_add_association '+', fight_participations_form, :fight_participation_weapons
+            .mb-3
+              %label.form-label shields
+              = fight_participations_form.fields_for :fight_participation_shields do |fight_participation_shield_form|
+                = render "fight_participation_shield_fields", f: fight_participation_shield_form
+              .links.text-center
+                = link_to_add_association '+', fight_participations_form, :fight_participation_shields
+
+      - if fight_participations_form.index < 1
         .col-md-1.align-self-center.text-center
           VS
   .mb-3.text-center
