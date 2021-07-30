@@ -21,7 +21,7 @@ class FightsController < ApplicationController
     @fight = Fight.new(fight_params)
     respond_to do |format|
       if @fight.save
-        format.html { redirect_to @fight, notice: "#{I18n.t("activerecord.models.fight").capitalize} #{I18n.t('controllers.notice.successfully_created')}" }
+        format.html { redirect_to @fight }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
