@@ -18,7 +18,7 @@
               = fight_participations_form.label :character_id, class: "form-label"
               = fight_participations_form.select :character_id, Character.all.map{|c| [c.name, c.id]}, {:include_blank => "Select Player"}, class: "form-control"
             .mb-3
-              %label.form-label Wepons
+              %label.form-label Weapons
               = fight_participations_form.fields_for :fight_participation_weapons do |fight_participation_weapon_form|
                 = render "fight_participation_weapon_fields", f: fight_participation_weapon_form
               .links.text-center
