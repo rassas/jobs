@@ -3,6 +3,10 @@
     .col.align-items-start
       .card
         .card-header
+          - if @fight.winner == fight_participation.character
+            .float-end
+              %span.badge.bg-info
+                Winner
           %b= fight_participation.character.name
           %div
             %span.badge.bg-success
