@@ -44,8 +44,12 @@
       .col-md-1.align-self-center.text-center
         VS
 %h3 Récapitulatif du combat:
-.card
+.card.mb-5
   %ul.list-group.list-group-flush
-    %li.list-group-item First hit
-    %li.list-group-item.text-end Second Hit
-    %li.list-group-item Third hit
+    - @fight.hits.order(:id).each do |hit|
+      %li.list-group-item{class: "#{ hit.fight_participation == @fight.fight_participations.first ? '' : 'text-end'}"}
+        = hit.fight_participation.character.name
+        %span.badge.bg-warning
+          = hit.fight_participation_weapon.equipment.name
+        %span.badge.bg-danger
+          = hit.damage

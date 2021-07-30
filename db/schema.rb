@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_29_134932) do
+ActiveRecord::Schema.define(version: 2021_07_30_103859) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
@@ -56,9 +56,21 @@ ActiveRecord::Schema.define(version: 2021_07_29_134932) do
     t.index ["winner_id"], name: "index_fights_on_winner_id"
   end
 
+  create_table "hits", force: :cascade do |t|
+    t.integer "fight_participation_equipment_id"
+    t.integer "fight_participation_id", null: false
+    t.integer "damage"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fight_participation_equipment_id"], name: "index_hits_on_fight_participation_equipment_id"
+    t.index ["fight_participation_id"], name: "index_hits_on_fight_participation_id"
+  end
+
   add_foreign_key "fight_participation_equipments", "equipment"
   add_foreign_key "fight_participation_equipments", "fight_participations"
   add_foreign_key "fight_participations", "characters"
   add_foreign_key "fight_participations", "fights"
   add_foreign_key "fights", "characters", column: "winner_id"
+  add_foreign_key "hits", "fight_participation_equipments"
+  add_foreign_key "hits", "fight_participations"
 end

@@ -3,7 +3,7 @@ class FightsController < ApplicationController
 
   # GET /fights
   def index
-    @fights = Fight.all
+    @fights = Fight.all.order(created_at: :desc)
   end
 
   # GET /fights/1
@@ -19,7 +19,6 @@ class FightsController < ApplicationController
   # POST /fights
   def create
     @fight = Fight.new(fight_params)
-
     respond_to do |format|
       if @fight.save
         format.html { redirect_to @fight, notice: "#{I18n.t("activerecord.models.fight").capitalize} #{I18n.t('controllers.notice.successfully_created')}" }
