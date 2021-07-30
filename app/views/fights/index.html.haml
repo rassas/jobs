@@ -1,12 +1,10 @@
-%h1
-  Liste des
-  = I18n.t("activerecord.models.fight").pluralize
+%h1= I18n.t("pages.fights.index.list_of_fights")
 
 %table.table.table-striped.table-hover
   %thead
     %tr
-      %th Player 1
-      %th Player 2
+      %th= I18n.t("pages.fights.index.first_player")
+      %th= I18n.t("pages.fights.index.second_player")
       %th
       %th
 
@@ -17,12 +15,12 @@
           = fight.characters.first.name
           - if fight.winner == fight.characters.first
             %span.badge.bg-info
-              winner
+              = I18n.t("pages.fights.index.winner")
         %td
           = fight.characters.last.name
           - if fight.winner == fight.characters.last
             %span.badge.bg-info
-              winner
+              = I18n.t("pages.fights.index.winner")
         %td
           = fight.created_at.strftime("%D %H:%M")
-        %td= link_to "Récapitulatif", fight_path(fight)
+        %td= link_to I18n.t("pages.fights.show.recap"), fight_path(fight)

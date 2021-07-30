@@ -40,3 +40,19 @@ fr:
     confirm: "vous êtes sûr?"
     error: "erreur"
     save: "Enregistrer"
+
+  pages:
+    characters:
+      index:
+        victory_rate: Pourcentage de victoire
+        list_of_characters: Liste des personnages
+    fights:
+      index:
+        list_of_fights: Historique des combat
+        first_player: Joueur 1
+        second_player: Joueur 2
+        winner: Gagnant
+      new:
+        player: Joueur
+      show:
+        recap: Récapitulatif du combat
