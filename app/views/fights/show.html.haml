@@ -6,7 +6,7 @@
           - if @fight.winner == fight_participation.character
             .float-end
               %span.badge.bg-info
-                Winner
+                = I18n.t("pages.fights.index.winner")
           %b= fight_participation.character.name
           %div
             %span.badge.bg-success
@@ -16,7 +16,7 @@
               = I18n.t("activerecord.attributes.character.attack_base_points")
               = fight_participation.character.attack_base_points
         .card-body
-          %b Weapons
+          %b= I18n.t("activerecord.models.weapon").capitalize.pluralize
           %ul
             - fight_participation.weapons.each do |weapon|
               %li
@@ -30,7 +30,7 @@
                   %span.badge.bg-success
                     = I18n.t("activerecord.attributes.equipment.defense_points")
                     = weapon.defense_points
-          %b Shields
+          %b= I18n.t("activerecord.models.shield").capitalize.pluralize
           %ul
             - fight_participation.shields.each do |shield|
               %li
@@ -47,7 +47,7 @@
     - if index < 1
       .col-md-1.align-self-center.text-center
         VS
-%h3 Récapitulatif du combat:
+%h3= I18n.t("pages.fights.show.recap")
 .card.mb-5
   %ul.list-group.list-group-flush
     - @fight.hits.order(:id).each do |hit|

@@ -11,20 +11,20 @@
       .col.align-items-start
         .card
           .card-header
-            Player
+            = I18n.t("pages.fights.new.player")
             = fight_participations_form.index + 1
           .card-body
             .mb-3
               = fight_participations_form.label :character_id, class: "form-label"
-              = fight_participations_form.select :character_id, Character.all.map{|c| [c.name, c.id]}, {:include_blank => "Select Player"}, class: "form-control"
+              = fight_participations_form.select :character_id, Character.all.map{|c| [c.name, c.id]}, {:include_blank => "Select Player"}, class: "form-control", required: :true
             .mb-3
-              %label.form-label Weapons
+              %label.form-label= I18n.t("activerecord.models.weapon").capitalize.pluralize
               = fight_participations_form.fields_for :fight_participation_weapons do |fight_participation_weapon_form|
                 = render "fight_participation_weapon_fields", f: fight_participation_weapon_form
               .links.text-center
                 = link_to_add_association '+', fight_participations_form, :fight_participation_weapons
             .mb-3
-              %label.form-label shields
+              %label.form-label= I18n.t("activerecord.models.shield").capitalize.pluralize
               = fight_participations_form.fields_for :fight_participation_shields do |fight_participation_shield_form|
                 = render "fight_participation_shield_fields", f: fight_participation_shield_form
               .links.text-center

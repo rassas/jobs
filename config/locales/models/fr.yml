@@ -5,7 +5,10 @@ fr:
       equipment: équipement
       shield: bouclier
       weapon: arme
+      fight_participation_equipments: Équipement sélectionné
+      fight_participation: Participation
       fight: Combat
+      hit: Coup
 
     attributes:
       character:
@@ -19,11 +22,18 @@ fr:
         defense_points: Points de défense
         required_experience: Expérience requise
         type: Type
+      fight_participation_equipments:
+        fight_participation_id: Participation
+        equipment_id: Equipement
+      fight_participation:
+        fight_id: Combat
+        character_id: Personnage
       fight:
         winner_id: Gagnant
-      fight_participation:
-        character_id: Personnage
-        fight_id: Combat
+      hit:
+        fight_participation_equipment_id: Équipement sélectionné
+        fight_participation_id: Participation
+        damage: Endommager
     errors:
       models:
         character:
